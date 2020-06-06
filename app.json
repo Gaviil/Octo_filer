@@ -1,11 +1,14 @@
 {
   "expo": {
-    "name": "filer",
-    "description": "This project is really great.",
-    "slug": "filer",
+    "name": "Blank Template",
+    "slug": "app",
     "privacy": "public",
-    "sdkVersion": "30.0.0",
-    "platforms": ["ios", "android"],
+    "sdkVersion": "36.0.0",
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",

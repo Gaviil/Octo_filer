@@ -1,52 +1,38 @@
-import React from 'react';
-import { View, Text, Button } from 'react-native';
-import { createStackNavigator, StackActions, NavigationActions } from 'react-navigation';
-import Filer from './components/filer'
-import Login from './components/login'
+import React, { useState, useEffect } from 'react';
+import { StyleSheet, Text, View, StatusBar } from 'react-native';
+import ListFile from './components/listFile';
+import colors from './theme'
+import MyHeader from './components/header';
 
-class HomeScreen extends React.Component {
+export default function App() {
+  const [currentPlace, setCurrentPlace] = useState('');
+  const [isLoading, setLoading] = useState(false);
+  const [urlBack, setUrlBack] = useState('');
 
-  render() {
-
-    return (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Text>Home Screen</Text>
-        <Button
-          title="Go to Details"
-          onPress={() => {
-            this.props.navigation.dispatch(StackActions.reset({
-              index: 0,
-              actions: [
-                NavigationActions.navigate({ routeName: 'Details' })
-              ],
-            }))
-          }}
-        />
-      </View>
-    );
-  }
+  return (
+    <View style={styles.container}>
+      <StatusBar
+        backgroundColor='#ff8d3a'
+        barStyle="dark-content"
+      />
+      <MyHeader
+        currentPlace={currentPlace}
+        setCurrentPlace={setCurrentPlace}
+      />
+      <ListFile
+        isLoading={isLoading}
+        setLoading={setLoading}
+        currentPlace={currentPlace}
+        setCurrentPlace={setCurrentPlace}
+      />
+    </View>
+  );
 }
 
-class DetailsScreen extends React.Component {
-  render() {
-    return (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Text>Details Screen</Text>
-      </View>
-    );
-  }
-}
-
-export default createStackNavigator({
-  Login: {
-    screen: Login,
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    height: '100%',
+    backgroundColor: colors.viewDark
   },
-  Filer: {
-    screen: Filer,
-  },
-},
-{
-  initialRouteName: 'Filer',
-},{
-    headerMode: 'screen'
 });
